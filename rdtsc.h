@@ -1,7 +1,55 @@
 #ifndef __RDTSC_H_DEFINED__
 #define __RDTSC_H_DEFINED__
 
+#include <linux/types.h>
 
+#if defined(__i386__)
+
+static __inline__ __u64 rdtsc(void)
+{
+	__u64 x;
+	__asm__ volatile (".byte 0x0f, 0x31" : "=A" (x));
+	return x;
+}
+
+#elif defined(__x86_64__)
+
+static __inline__ __u64 rdtsc(void)
+{
+	__u32 hi, lo;
+	__asm__ __volatile__ ("rdtsc" : "=a" (lo), "=d" (hi));
+	return ( (__u64)lo)|( ((__u64)hi)<<32 );
+}
+
+#elif defined(__powerpc__)
+
+static __inline__ __u64 rdtsc(void)
+{
+	__u64 result=0;
+	__u32 upper, lower,tmp;
+	__asm__ volatile(
+			"0:\n"
+			"\tmftbu   %0\n"
+			"\tmftb    %1\n"
+			"\tmftbu   %2\n"
+			"\tcmpw    %2,%0\n"
+			"\tbne     0b\n"
+			: "=r"(upper),"=r"(lower),"=r"(tmp)
+			);
+	result = upper;
+	result = result<<32;
+	result = result|lower;
+
+	return(result);
+}
+
+#else
+
+#error "No tick counter is available!"
+
+#endif
+
+#if 0
 #if defined(__i386__)
 
 static __inline__ unsigned long long rdtsc(void)
@@ -48,6 +96,8 @@ static __inline__ unsigned long long rdtsc(void)
 #else
 
 #error "No tick counter is available!"
+
+#endif
 
 #endif
 
