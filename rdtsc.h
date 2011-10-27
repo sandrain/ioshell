@@ -63,7 +63,7 @@ static __inline__ unsigned long long rdtsc(void)
  *
  * PowerPC provides similar capability but PowerPC time counter is increments at either equal the
  * processor core clock rate or as driven by a separate timer clock input. PowerPC time counter is
- * also a 64-bit. 
+ * also a 64-bit.
  *
  * The example..
  */

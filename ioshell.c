@@ -1,5 +1,5 @@
 /*
- * test_shell.c
+ * ioshell.c
  *
  * This program uses rdtsc rather than blktrace.
  */
@@ -63,7 +63,7 @@ typedef struct rw_request_st	rw_request_t;
 static char *outfilename;
 static FILE *outfp;
 
-#ifdef	__USE_BLKTRACE__ 
+#ifdef	__USE_BLKTRACE__
 static char outbuf[MAXLINE];
 static FILE *blkfifo;
 
