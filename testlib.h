@@ -55,10 +55,13 @@ typedef struct flash_test_st	flash_test_t;
 			printf(	"Name = %s\n"					\
 				"Size = %lld Bytes (%lld MB)\n"			\
 				"Sector size = %ld\n"				\
-				"# sectors = %ld\n",				\
+				"# sectors = %ld\n"				\
+				"Chunk size = %d\n"				\
+				"# of chunks = %lld\n",				\
 				(this)->name, (this)->dev_size,			\
 				(this)->dev_size >> 20,				\
-				(this)->nsectors, (this)->sector_size);		\
+				(this)->nsectors, (this)->sector_size,		\
+				(this)->page_size, (this)->dev_size / (this)->page_size);	\
 		} while (0)
 
 
