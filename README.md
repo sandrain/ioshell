@@ -8,3 +8,4 @@ This was developed for the following work:
 "Identifying the FTL Mapping Scheme for USB Flash Devices,"
 The 4th International Conference on Convergence Technology and Information Convergence (CTIC), Oct.2009
 
+* [slides](https://drive.google.com/file/d/1n7d2Vx-GVPirJAlxbs3o2Nwo3BeWgZFy/view?usp=sharing)
